@@ -3,16 +3,16 @@
   sudo: true
   apt: pkg={{ item }}
   with_items:
-    - libgmp3-dev
-    - libsigsegv-dev
-    - openssl
-    - libssl-dev
-    - libncurses5-dev
-    - git
-    - make
-    - exuberant-ctags
-    - libtool
     - automake
+    - exuberant-ctags
+    - git
+    - libgmp3-dev
+    - libncurses5-dev
+    - libsigsegv-dev
+    - libssl-dev
+    - libtool
+    - make
+    - openssl
 
 # - include: deb.yml
 - include: git.yml
