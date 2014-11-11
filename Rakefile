@@ -1,5 +1,9 @@
-task :boot    => %w( vagrant:up urbit:shell )
-task :default => :boot
+require_relative 'util'
+
+task :boot      => %w( vagrant:up urbit:shell )
+task :default   => :boot
+task :provision => 'vagrant:provision'
+task :shell     => 'urbit:shell'
 
 namespace :urbit do
   task :shell do
@@ -13,25 +17,24 @@ namespace :urbit do
     opts =  '-v'
     opts << 'c' unless Dir.exist?( path )
 
-    vagrant \
-      'ssh -c',
-      '"vere',
+    Util.vagrant \
+      'vere',
       opts,
-      "/vagrant/#{ name }\""
+      "/vagrant/#{ name }",
+      :joiner => ' '
   end
 end
 
 namespace :vagrant do
   task :provision do
-    vagrant 'provision'
+    Util.vagrant \
+      :command => 'provision',
+      :opts    => []
   end
 
   task :up do
-    vagrant 'up'
+    Util.vagrant \
+      :command => 'up',
+      :opts    => []
   end
-end
-task :provision => 'vagrant:provision'
-
-def vagrant( *args )
-  system %Q[vagrant #{ args.join ' ' }]
 end
