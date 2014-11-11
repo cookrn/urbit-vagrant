@@ -25,3 +25,9 @@ The first time you run `rake`, it will call `vere` with the '-c'
 option to create your pier in the `mypier` folder in your project
 directory. All subsequent invocations of `rake` will not use the '-c'
 flag and will just log you into your shell.
+
+## Helpful Links
+
+* [Urbit](http://urbit.org/)
+* [Urbit Documentation](http://doc.urbit.org/doc/)
+* [Urbit Source](https://github.com/urbit/urbit)
