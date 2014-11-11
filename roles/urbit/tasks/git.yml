@@ -1,0 +1,18 @@
+---
+- name: clone the repo
+  git: repo=https://github.com/urbit/urbit.git
+       dest={{ urbit_git_install_path }}
+       accept_hostkey=yes
+       depth=1
+       update=false
+
+- name: compile
+  shell: make && touch .made
+         chdir={{ urbit_git_install_path }}
+         creates=.made
+
+- name: install
+  sudo: true
+  shell: make debinstall && touch .installed
+         chdir={{ urbit_git_install_path }}
+         creates=.installed

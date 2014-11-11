@@ -1,0 +1,35 @@
+---
+- name: update the aptitude cache
+  sudo: true
+  apt: cache_valid_time=3600
+       update_cache=true
+
+- name: install standard packages
+  sudo: true
+  apt: pkg={{ item }}
+  with_items:
+    - apt-transport-https
+    - build-essential
+    - ca-certificates
+    - curl
+    - g++
+    - git
+    - lsb-release
+    - make
+    - python
+    - python-software-properties
+    - screen
+    - subversion
+    - traceroute
+    - vim
+    - wget
+
+- name: uninstall specific packages
+  sudo: true
+  apt: pkg={{ item }}
+       state=absent
+  with_items:
+    - chef
+    - chef-zero
+    - puppet
+    - puppet-common

@@ -1,0 +1,8 @@
+---
+- name: download the package
+  get_url: url=http://doc.urbit.org/packages/urbit_0.2-1_amd64.deb
+           dest={{ urbit_deb_install_path }}
+
+- name: install the package
+  sudo: true
+  apt: deb={{ urbit_deb_install_path }}

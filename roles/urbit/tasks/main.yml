@@ -1,0 +1,18 @@
+---
+- name: install prerequisites
+  sudo: true
+  apt: pkg={{ item }}
+  with_items:
+    - libgmp3-dev
+    - libsigsegv-dev
+    - openssl
+    - libssl-dev
+    - libncurses5-dev
+    - git
+    - make
+    - exuberant-ctags
+    - libtool
+    - automake
+
+# - include: deb.yml
+- include: git.yml
