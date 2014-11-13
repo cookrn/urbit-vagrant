@@ -24,6 +24,7 @@ module Util
     options[ :joiner ]  ||= ' && '
     options[ :opts ]    ||= [ '-c' ]
 
+    options[ :fail ] = true if options[ :fail ].nil?
     options[ :join ] = true if options[ :join ].nil?
 
     cmd_args =
@@ -47,6 +48,13 @@ module Util
       )
     end
 
-    send *cmd_args
+    result = send *cmd_args
+
+    if options[ :fail ] && !result
+      warn "Unable to run command: #{ cmd_args.join ' ' }"
+      exit 1
+    end
+
+    return result
   end
 end
