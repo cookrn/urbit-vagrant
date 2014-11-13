@@ -1,0 +1,54 @@
+---
+- include: urbit.yml
+
+- name: reinstall urbit on the vagrant box after a breach
+  hosts: all
+  gather_facts: false
+  vars:
+    urbit_git_install_path: /home/{{ ansible_ssh_user }}/urbit
+    urbit_pier_backups_directory_name: .pier_backups
+  tasks:
+    - name: register a timestamp for our breach rebuild
+      command: date +%Y%m%d%H%M%S
+      register: timestamp
+
+    - name: force update the git repo
+      git: repo=https://github.com/urbit/urbit.git
+           dest={{ urbit_git_install_path }}
+           depth=1
+           update=true
+           force=true
+
+    - name: clean up old build artifacts
+      command: make clean
+               chdir={{ urbit_git_install_path }}
+
+    - name: compile new version of urbit
+      command: make debbuild
+               chdir={{ urbit_git_install_path }}
+
+    - name: ensure compiled artifact present
+      file: path={{ urbit_git_install_path }}/.made
+
+    - name: install new version of urbit
+      sudo: true
+      shell: make debinstall
+             chdir={{ urbit_git_install_path }}
+
+    - name: ensure installed artifact present
+      file: path={{ urbit_git_install_path }}/.installed
+
+    - name: create backups container directory
+      file: path=/vagrant/{{ urbit_pier_backups_directory_name }}
+            state=directory
+
+    - name: create backup directory
+      file: path=/vagrant/{{ urbit_pier_backups_directory_name }}/mypier-{{ timestamp.stdout }}
+            state=directory
+
+    - name: copy pier contents to backup directory
+      shell: cp -r /vagrant/mypier/* /vagrant/{{ urbit_pier_backups_directory_name }}/mypier-{{ timestamp.stdout }}
+
+    - name: remove old pier directory
+      file: path=/vagrant/mypier
+            state=absent
