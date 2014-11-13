@@ -7,7 +7,7 @@
        update=false
 
 - name: compile
-  shell: make && touch .made
+  shell: make debbuild && touch .made
          chdir={{ urbit_git_install_path }}
          creates=.made
 
