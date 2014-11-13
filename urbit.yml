@@ -1,5 +1,6 @@
 ---
-- hosts: all
+- name: install urbit on the vagrant box
+  hosts: all
   gather_facts: false
   roles:
     - common
