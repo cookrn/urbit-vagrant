@@ -1,0 +1,21 @@
+---
+- name: create a backup of the current pier
+  hosts: all
+  gather_facts: false
+  vars:
+    urbit_pier_backups_directory_name: .pier_backups
+  tasks:
+    - name: register a timestamp for our breach rebuild
+      command: date +%Y%m%d%H%M%S
+      register: timestamp
+
+    - name: create backups container directory
+      file: path=/vagrant/{{ urbit_pier_backups_directory_name }}
+            state=directory
+
+    - name: create backup directory
+      file: path=/vagrant/{{ urbit_pier_backups_directory_name }}/mypier-{{ timestamp.stdout }}
+            state=directory
+
+    - name: copy pier contents to backup directory
+      shell: cp -r /vagrant/mypier/* /vagrant/{{ urbit_pier_backups_directory_name }}/mypier-{{ timestamp.stdout }}

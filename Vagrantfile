@@ -12,9 +12,10 @@ Vagrant.configure VAGRANTFILE_API_VERSION do | config |
   # Default value: false
   # config.ssh.forward_agent = true
 
-  # VMs get a gig (1Gb) of RAM
+  # VMs get 3Gb of RAM (need a min of 2048 + room for OS)
+  # 3Gb = 1024Mb + 2048Mb = 3072Mb
   config.vm.provider 'virtualbox' do | virtualbox |
-    virtualbox.customize [ 'modifyvm' , :id , '--memory' , '1024' ]
+    virtualbox.customize [ 'modifyvm' , :id , '--memory' , '3072' ]
   end
 
   config.vm.provision 'ansible' do | ansible |

@@ -26,6 +26,27 @@ option to create your pier in the `mypier` folder in your project
 directory. All subsequent invocations of `rake` will not use the '-c'
 flag and will just log you into your shell.
 
+Calling `rake` without any arguments, as recommended above, runs the
+default task which is `shell`. Run `rake -T` to see a list of helpful
+tasks.
+
+### Breach
+
+In the event that Tlon has breached Urbit and you need to reset, there
+is a Rake task you can run to reset your pier and create a backup of
+your old one.
+
+```bash
+rake breach
+```
+
+If you just want to create a backup without resetting your pier, you can
+do so with the `backup` Rake task.
+
+```bash
+rake backup
+```
+
 ## Helpful Links
 
 * [Urbit](http://urbit.org/)

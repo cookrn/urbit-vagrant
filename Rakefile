@@ -1,20 +1,26 @@
 require_relative 'util'
 
-task :boot      => %w( vagrant:up urbit:shell )
-task :breach    => %w( vagrant:up urbit:breach urbit:shell )
-task :default   => :boot
-task :provision => 'vagrant:provision'
-task :shell     => 'urbit:shell'
+desc 'Create a backup of your current pier'
+task :backup => %w( vagrant:up urbit:backup )
+
+desc 'Reset Urbit, backup your pier, and run Arvo'
+task :breach => %w( vagrant:up urbit:breach urbit:shell )
+
+desc 'Run Arvo ((DEFAULT))'
+task :shell   => %w( vagrant:up urbit:shell )
+task :default => :shell
 
 namespace :urbit do
-  task :breach do
-    root   = File.dirname __FILE__
-    result = system "#{ root }/bin/run_breach_reset"
+  task :backup do
+    Util.runner \
+      'run_backup',
+      'Unable to successfully run backup!'
+  end
 
-    unless result
-      warn 'Unable to successfully run breach reset!'
-      exit 1
-    end
+  task :breach do
+    Util.runner \
+      'run_breach_reset',
+      'Unable to successfully run breach reset!'
   end
 
   task :shell do
@@ -37,12 +43,6 @@ namespace :urbit do
 end
 
 namespace :vagrant do
-  task :provision do
-    Util.vagrant \
-      :command => 'provision',
-      :opts    => []
-  end
-
   task :up do
     Util.vagrant \
       :command => 'up',

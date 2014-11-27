@@ -15,6 +15,16 @@ module Util
     end
   end
 
+  def runner( bin_script , failure_message )
+    root   = File.dirname __FILE__
+    result = system "#{ root }/bin/#{ bin_script }"
+
+    unless result
+      warn failure_message
+      exit 1
+    end
+  end
+
   def vagrant( *cmds )
     options =   cmds.pop if cmds.last.is_a?( Hash )
     options ||= Hash.new
