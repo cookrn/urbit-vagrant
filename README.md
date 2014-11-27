@@ -52,3 +52,22 @@ rake backup
 * [Urbit](http://urbit.org/)
 * [Urbit Documentation](http://doc.urbit.org/doc/)
 * [Urbit Source](https://github.com/urbit/urbit)
+* [Urbit Developers Mailing List](https://groups.google.com/forum/#!topic/urbit-dev)
+
+## Help & Support
+
+Please use Github Issues in this repo to describe and discuss problems.
+Also, feel free to discuss with me in `:chat`. I'm `~binbec-satmep`.
+Lastly, you can find me elsewhere online.
+
+## Contributing
+
+1. Fork it ( https://github.com/cookrn/urbit-vagrant/fork )
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create a new Pull Request
+
+## License
+
+MIT. See: [LICENSE](https://github.com/cookrn/urbit-vagrant/blob/master/MIT-LICENSE)
