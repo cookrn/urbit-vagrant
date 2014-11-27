@@ -52,7 +52,7 @@ rake backup
 * [Urbit](http://urbit.org/)
 * [Urbit Documentation](http://doc.urbit.org/doc/)
 * [Urbit Source](https://github.com/urbit/urbit)
-* [Urbit Developers Mailing List](https://groups.google.com/forum/#!topic/urbit-dev)
+* [Urbit Developers Mailing List](https://groups.google.com/forum/#!forum/urbit-dev)
 
 ## Help & Support
 
