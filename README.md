@@ -70,4 +70,4 @@ Lastly, you can find me elsewhere online.
 
 ## License
 
-MIT. See: [LICENSE](https://github.com/cookrn/urbit-vagrant/blob/master/MIT-LICENSE)
+MIT. See: [LICENSE](https://github.com/cookrn/urbit-vagrant/blob/master/LICENSE)
