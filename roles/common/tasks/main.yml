@@ -9,12 +9,16 @@
   apt: pkg={{ item }}
   with_items:
     - apt-transport-https
+    - automake
     - build-essential
     - ca-certificates
     - cmake
     - curl
     - g++
     - git
+    - libsigsegv-dev
+    - libssl-dev
+    - libtool
     - lsb-release
     - make
     - python
