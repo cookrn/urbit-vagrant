@@ -1,10 +1,22 @@
 ---
+- name: delete the repo if it exists
+  file: path={{ urbit_git_install_path }}
+        state=absent
+
 - name: clone the repo
   git: repo=https://github.com/urbit/urbit.git
        dest={{ urbit_git_install_path }}
        accept_hostkey=yes
        depth=1
        update=false
+
+- name: create urb directory
+  file: path={{ urbit_git_install_path }}/urb
+        state=directory
+
+- name: fetch the pill
+  get_url:  url=https://bootstrap.urbit.org/latest.pill 
+            dest={{ urbit_git_install_path }}/urb/urbit.pill
 
 - name: compile
   shell: make debbuild && touch .made
