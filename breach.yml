@@ -26,7 +26,8 @@
       file: path={{ urbit_git_install_path }}/.made
 
     - name: install new version of urbit
-      sudo: true
+      become: yes
+      become_method: sudo
       shell: make debinstall
              chdir={{ urbit_git_install_path }}
 

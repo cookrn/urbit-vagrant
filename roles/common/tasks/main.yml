@@ -1,11 +1,13 @@
 ---
 - name: update the aptitude cache
-  sudo: true
+  become: yes
+  become_method: sudo
   apt: cache_valid_time=3600
        update_cache=true
 
 - name: install standard packages
-  sudo: true
+  become: yes
+  become_method: sudo
   apt: pkg={{ item }}
   with_items:
     - apt-transport-https
@@ -36,7 +38,8 @@
     - wget
 
 - name: uninstall specific packages
-  sudo: true
+  become: yes
+  become_method: sudo
   apt: pkg={{ item }}
        state=absent
   with_items:

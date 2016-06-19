@@ -4,5 +4,6 @@
            dest={{ urbit_deb_install_path }}
 
 - name: install the package
-  sudo: true
+  become: yes
+  become_method: sudo
   apt: deb={{ urbit_deb_install_path }}
