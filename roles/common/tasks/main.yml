@@ -14,15 +14,21 @@
     - ca-certificates
     - cmake
     - curl
+    - exuberant-ctags
     - g++
     - git
+    - libgmp3-dev
+    - libncurses5-dev
     - libsigsegv-dev
     - libssl-dev
     - libtool
     - lsb-release
     - make
+    - openssl
     - python
     - python-software-properties
+    - ragel
+    - re2c
     - screen
     - subversion
     - traceroute
