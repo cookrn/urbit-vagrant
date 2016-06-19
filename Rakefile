@@ -12,15 +12,15 @@ task :default => :shell
 
 namespace :urbit do
   task :backup do
-    Util.runner \
-      'run_backup',
-      'Unable to successfully run backup!'
+    Util.vagrant \
+      'cd /vagrant',
+      'ansible-playbook backup.yml -i hosts/local.ini --connection=local'
   end
 
   task :breach do
-    Util.runner \
-      'run_breach_reset',
-      'Unable to successfully run breach reset!'
+    Util.vagrant \
+      'cd /vagrant',
+      'ansible-playbook breach.yml -i hosts/local.ini --connection=local'
   end
 
   task :shell do

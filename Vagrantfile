@@ -20,11 +20,6 @@ Vagrant.configure VAGRANTFILE_API_VERSION do | config |
 
   config.vm.provision 'ansible_local' do | ansible |
     ansible.playbook = 'urbit.yml'
-
-    # set the verbosity of information that ansible will display
-    # ansible.verbose = 'vv'
-
-    # add tags here to focus on specific ansible tasks
-    # ansible.tags = [ 'wip' ]
+    ansible.extra_vars = {ansible_ssh_user: 'vagrant'}
   end
 end
