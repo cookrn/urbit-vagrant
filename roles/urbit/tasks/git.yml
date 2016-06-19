@@ -24,7 +24,8 @@
          creates=.made
 
 - name: install
-  sudo: true
+  become: yes
+  become_method: sudo
   shell: make debinstall && touch .installed
          chdir={{ urbit_git_install_path }}
          creates=.installed

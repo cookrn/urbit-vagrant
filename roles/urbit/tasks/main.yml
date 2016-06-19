@@ -1,6 +1,7 @@
 ---
 - name: install prerequisites
-  sudo: true
+  become: yes
+  become_method: sudo
   apt: pkg={{ item }}
   with_items:
     - automake
