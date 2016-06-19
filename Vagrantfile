@@ -18,7 +18,7 @@ Vagrant.configure VAGRANTFILE_API_VERSION do | config |
     virtualbox.customize [ 'modifyvm' , :id , '--memory' , '3072' ]
   end
 
-  config.vm.provision 'ansible' do | ansible |
+  config.vm.provision 'ansible_local' do | ansible |
     ansible.playbook = 'urbit.yml'
 
     # set the verbosity of information that ansible will display
